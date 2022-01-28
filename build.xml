@@ -3,6 +3,7 @@
     <property name="src.dir" value="src"/>
     <property name="out.dir" value="bin"/>
     <property name="lib.dir" value="lib"/>
+    <property name="doc.dir" value="doc"/>
     <path id="lib.classpath">
       <fileset dir="${lib.dir}"/>
     </path>
@@ -12,6 +13,7 @@
   <target name="prepare" depends="init">
     <mkdir dir="${out.dir}"/>
     <mkdir dir="${lib.dir}"/>
+    <mkdir dir="${doc.dir}"/>
   </target>
   <target name="clean" depends="init">
     <delete dir="${out.dir}"/>
@@ -23,5 +25,8 @@
   <target name="jar" depends="build">
     <delete file="${jar.file}"/>
     <jar jarfile="${jar.file}" basedir="${out.dir}"/>
+  </target>
+  <target name="doc" depends="init" description="Generate Documentation">
+    <javadoc sourcepath="${src.dir}" destdir="${doc.dir}"/>
   </target>
 </project>
